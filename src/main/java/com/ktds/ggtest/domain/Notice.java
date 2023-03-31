@@ -27,6 +27,7 @@ public class Notice {
     private LocalDateTime createDate;       // now로 설정
 
     @ManyToOne
-    private Member member;
+    @JoinColumn(name = "member_id")
+    private Member member_pk;
 
 }

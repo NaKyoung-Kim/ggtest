@@ -1,3 +1,32 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function login() {
+  var id = $("input[name='memberId']").val();
+  var password = $("input[name='password']").val();
+
+  $.ajax({
+    url: "/login", // 서버 URL
+    type: "POST", // 요청 방식
+    data: {
+      memberId: id, // 변경된 이름
+      password: password
+    },
+    success: function(response) {
+      if (response == "OK") {
+		  console.log('성공');
+        window.location.href = "/main"; // 로그인이 성공하면 공지사항 페이지로 이동
+      } else {
+        alert("로그인 실패"); // 로그인이 실패하면 알림창을 띄움
+      }
+    },
+    error: function(xhr, status, error) {
+		console.log('실패');
+		console.error(xhr, status, error);
+	}
+  });
+}
+</script>
+
 <!doctype html>
 <html>
 <head>
@@ -39,16 +68,16 @@
 
 			<div class="login-comp">
 				<label class="label">회원ID (이메일)</label>
-				<input class="input" placeholder="아이디 입력"/>
+				<input class="input" name="memberId" placeholder="아이디 입력"/>
 			</div>
 
 			<div class="login-comp">
 				<label class="label">비밀번호</label>
-				<input class="input" placeholder="비밀번호 입력"/>
+				<input class="input" name="password" placeholder="비밀번호 입력"/>
 			</div>
 
 			<div class="btn-wrap login-comp mb-5">
-				<button class="lg-btn bg-blue">로그인</button>
+				<button type="submit" class="lg-btn bg-blue" onclick="login()">로그인</button>
 			</div>
 
 		</div>
@@ -73,7 +102,7 @@
 
 	</div>
 </footer>
-<!— //footer end  —>
+<!-- //footer end  -->
 
 </body>
 </html>

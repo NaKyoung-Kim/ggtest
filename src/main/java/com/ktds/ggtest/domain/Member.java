@@ -3,7 +3,6 @@ package com.ktds.ggtest.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -17,11 +16,12 @@ public class Member {
     private Integer id;
 
     @Column(nullable = false)
+    private String memberId;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
     private String name;
-
-    // getter, setter
 
 }
